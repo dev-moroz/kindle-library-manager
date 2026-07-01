@@ -13,7 +13,19 @@ $url = getenv('SITE_URL');
 
 file_put_contents($log_file, date('Y-m-d H:i:s') . " - " . $content . PHP_EOL, FILE_APPEND);
 
-$messages = require __DIR__ . '/lang/ru.php';
+$available_langs = ['ru', 'en'];
+$default_lang = 'en';
+
+$update = json_decode($content, true);
+$lang_code = $update['message']['from']['language_code']
+    ?? $update['callback_query']['from']['language_code']
+    ?? $default_lang;
+$lang = substr($lang_code, 0, 2);
+if (!in_array($lang, $available_langs, true)) {
+    $lang = $default_lang;
+}
+
+$messages = require __DIR__ . "/lang/$lang.php";
 
 function t($key, $params = []) {
     global $messages;
