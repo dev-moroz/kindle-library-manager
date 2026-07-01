@@ -62,9 +62,6 @@ The library is then available at your `SITE_URL`, and books can be added by mess
     ├── bot.php           # Telegram bot (receive, convert, save)
     ├── style.css         # Library styling
     └── lang/
+        └── en.php        # Bot message strings (English)
         └── ru.php        # Bot message strings (Russian)
 ```
-
-## Notes
-
-The bot's interface messages are in Russian; you can translate them by editing `site/lang/ru.php`. Binding Nginx to a private (e.g. Tailscale) IP keeps the library reachable only inside your own network.
